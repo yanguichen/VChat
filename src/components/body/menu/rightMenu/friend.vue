@@ -20,11 +20,15 @@ export default {
         }
     },
     mounted() {
-        var getHeight = setInterval(this.getHeight, 500);
+        this.interval = setInterval(this.getHeight, 500);
+    },
+    destroyed() {
+        clearInterval(this.interval);
     },
     data() {
         return {
             screenHeight: document.body.clientHeight - 109,
+            interval: "",
             columns1: [
                 {
                     title: "Name",

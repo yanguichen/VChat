@@ -105,14 +105,18 @@ export default {
                     pic2: require("@/assets/icons/leftMenu/7-1.png")
                 }
             ],
-            height: document.body.clientHeight - 99
+            height: document.body.clientHeight - 99,
+            interval: ""
         };
     },
     created() {
         this.formatStr();
     },
     mounted() {
-        setInterval(this.getHeight, 500);
+        this.interval = setInterval(this.getHeight, 500);
+    },
+    destroyed() {
+        clearInterval(this.interval);
     },
     methods: {
         tipClick: function(index) {
