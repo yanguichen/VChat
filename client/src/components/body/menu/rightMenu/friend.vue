@@ -1,21 +1,25 @@
 <style lang="stylus">
 .friend
     //padding 10px 10px 0 10px
+    .word
+        margin-bottom 10px
+
     #friendTable
-        min-height 460px
+        min-height 419px
 </style>
 
 
 <template>
     <div class="friend">
-        <Table id="friendTable" :height="screenHeight" :columns="columns1" :data="data2"></Table>
+        <h3 class="word">我的好友</h3>
+        <Table id="friendTable" :height="screenHeight" :columns="columns1" :data="data1"></Table>
     </div>
 </template>
 <script>
 export default {
     methods: {
         getHeight: function() {
-            this.screenHeight = document.body.clientHeight - 109;
+            this.screenHeight = document.body.clientHeight - 140;
         }
     },
     mounted() {
@@ -26,70 +30,122 @@ export default {
     },
     data() {
         return {
-            screenHeight: document.body.clientHeight - 109,
+            screenHeight: document.body.clientHeight - 140,
             interval: "",
             columns1: [
                 {
-                    title: "Name",
+                    title: "姓名",
                     key: "name"
                 },
                 {
-                    title: "Age",
+                    title: "性别",
+                    key: "sex"
+                },
+                {
+                    title: "出生日期",
+                    key: "mdate"
+                },
+                {
+                    title: "年龄",
                     key: "age"
                 },
                 {
-                    title: "Address",
-                    key: "address"
+                    title: "手机号码",
+                    key: "mobile"
+                },
+                {
+                    title: "邮箱地址",
+                    key: "email"
+                },
+                {
+                    title: "兴趣爱好",
+                    key: "hobby"
+                },
+                {
+                    title: "个人简介",
+                    key: "introduction"
                 }
             ],
-            data2: [
+            data1: [
                 {
                     name: "John Brown",
+                    sex: "男",
+                    mdate: "2016-10-03",
                     age: 18,
-                    address: "New York No. 1 Lake Park",
-                    date: "2016-10-03"
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "Jim Green",
-                    age: 24,
-                    address: "London No. 1 Lake Park",
-                    date: "2016-10-01"
+                    sex: "男",
+                    mdate: "2016-10-03",
+                    age: 18,
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "Joe Black",
-                    age: 30,
-                    address: "Sydney No. 1 Lake Park",
-                    date: "2016-10-02"
+                    sex: "女",
+                    mdate: "2016-10-03",
+                    age: 18,
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "Jon Snow",
-                    age: 26,
-                    address: "Ottawa No. 2 Lake Park",
-                    date: "2016-10-04"
+                    sex: "女",
+                    mdate: "2016-10-03",
+                    age: 18,
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "John Brown",
+                    sex: "女",
+                    mdate: "2016-10-03",
                     age: 18,
-                    address: "New York No. 1 Lake Park",
-                    date: "2016-10-03"
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "Jim Green",
-                    age: 24,
-                    address: "London No. 1 Lake Park",
-                    date: "2016-10-01"
+                    sex: "男",
+                    mdate: "2016-10-03",
+                    age: 18,
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "Joe Black",
-                    age: 30,
-                    address: "Sydney No. 1 Lake Park",
-                    date: "2016-10-02"
+                    sex: "男",
+                    mdate: "2016-10-03",
+                    age: 18,
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 },
                 {
                     name: "Jon Snow",
-                    age: 26,
-                    address: "Ottawa No. 2 Lake Park",
-                    date: "2016-10-04"
+                    sex: "女",
+                    mdate: "2016-10-03",
+                    age: 18,
+                    mobile: "",
+                    email: "",
+                    hobby: "",
+                    introduction: ""
                 }
             ]
         };

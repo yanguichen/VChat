@@ -87,7 +87,7 @@ export default {
                     pic2: require("@/assets/icons/leftMenu/3-1.png")
                 },
                 {
-                    item: "我的笔记",
+                    item: "我的日记",
                     isHover: false,
                     pic1: require("@/assets/icons/leftMenu/5.png"),
                     pic2: require("@/assets/icons/leftMenu/5-1.png")
