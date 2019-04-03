@@ -37,7 +37,7 @@ export default {
         share
     },
     mounted: function() {
-        this.$root.bus.$on("routeChage", num => {
+        this.$root.bus.$on("routeChange", num => {
             this.changeRoute = num;
         });
     },

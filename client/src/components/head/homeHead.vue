@@ -41,10 +41,26 @@
                 height 50px
                 align-items center
                 justify-content center
+
+    .shelter
+        position fixed
+        width 100%
+        height 100%
+        background-color #F5F5F5
+        opacity 0.5
+        z-index 998
+
+    .msgFrame
+        position fixed
+        width 100%
+        height 100%
+        display flex
+        align-items center
+        justify-content center
+        z-index 999
 </style>
 
 <template>
-
     <Row class="topmenu">
         <Col span="4" class="log"><img src="@/assets/icons/head/log.png" />
         <span style="cursor:default">网上交友平台</span>
@@ -67,23 +83,36 @@
                 <DropdownItem name="logOut">退出登录</DropdownItem>
             </DropdownMenu>
         </Dropdown>
-
         </Col>
+        <!-- 遮罩层 -->
+        <div class="shelter" v-show="isShowMsg"></div>
+        <div class="msgFrame" v-show="isShowMsg">
+            <!-- <div class="topFrame">
+                <span class="msg">个人信息</span>
+                <span class="closeMsg" @click="closeMsg">关闭</span>
+            </div> -->
+            <changeMsg :onClose="closeMsg" />
+        </div>
+
     </Row>
 </template>
 
 <script>
+import changeMsg from "@/components/head/changeMsg.vue";
 import { delCookie } from "@/assets/js/cookie.js";
 export default {
     data() {
         return {
+            isShowMsg: false,
             pic: require("@/assets/icons/head/pic1.png")
         };
     },
-    components: {},
+    components: {
+        changeMsg
+    },
     methods: {
         change(index) {
-            this.$root.bus.$emit("routeChage", index);
+            this.$root.bus.$emit("routeChange", index);
         },
         selectTypeAction(name) {
             switch (name) {
@@ -97,7 +126,12 @@ export default {
                 }
             }
         },
-        showMsg() {},
+        showMsg() {
+            this.isShowMsg = true;
+        },
+        closeMsg() {
+            this.isShowMsg = false;
+        },
         logout() {
             console.log("退出登录");
             delCookie("username");

@@ -124,7 +124,7 @@ export default {
                 this.items[i].isHover = false;
             }
             this.items[index].isHover = true;
-            this.$root.bus.$emit("routeChage", index + 3);
+            this.$root.bus.$emit("routeChange", index + 3);
         },
         getHeight: function() {
             this.height = document.body.clientHeight - 99 + "px";
