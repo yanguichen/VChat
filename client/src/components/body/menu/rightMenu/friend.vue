@@ -1,7 +1,6 @@
 <style lang="stylus">
 .friend
-    padding 10px 10px 0 10px
-
+    //padding 10px 10px 0 10px
     #friendTable
         min-height 460px
 </style>

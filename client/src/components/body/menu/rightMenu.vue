@@ -1,7 +1,9 @@
 <style lang="stylus">
+.rightMenu
+    margin 10px 10px 0 10px
 </style>
 <template>
-    <div>
+    <div class="rightMenu">
         <community v-if="changeRoute==1" />
         <myCommunity v-if="changeRoute==2" />
         <friend v-if="changeRoute==3" />

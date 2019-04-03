@@ -101,7 +101,7 @@ export default {
         logout() {
             console.log("退出登录");
             delCookie("username");
-            this.$router.push("/login");
+            this.$router.push("/");
         }
     }
 };
