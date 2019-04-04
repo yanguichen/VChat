@@ -1,17 +1,20 @@
 <style  lang='stylus'>
 .topmenu
     width 100%
-    height 50px
-    background-color #778fe6
+    min-height 50px
+    height 5%
 
+    //background-color #778fe6
     .log
         display flex
         align-items center
-        justify-content center
-        width 220px
+        //justify-content center
+        //width 220px
         height 50px
-        font 18px '微软雅黑'
-        color #ffffff
+
+        span
+            font 16px '微软雅黑'
+            color blue
 
     .community
         width 100px
@@ -32,15 +35,15 @@
             line-height 50px
 
     .pic
-        float right
-        width 70px
+        //float right
 
+        //width 70px
         .logImg
-            a
-                display flex
-                height 50px
-                align-items center
-                justify-content center
+            display flex
+            height 50px
+            align-items center
+            justify-content flex-end
+            margin-right -2px
 
     .shelter
         position fixed
@@ -62,19 +65,19 @@
 
 <template>
     <Row class="topmenu">
-        <Col span="4" class="log"><img src="@/assets/icons/head/log.png" />
+        <Col span="12" class="log"><img src="@/assets/icons/head/log.png" />
         <span style="cursor:default">网上交友平台</span>
         </Col>
-        <Col span="4" class="community link">
+        <!-- <Col span="4" class="community link">
         <div @click="change(1)">社区</div>
         </Col>
         <Col span="4" class="mycom link">
         <div @click="change(2)">我的社区</div>
-        </Col>
+        </Col> -->
 
-        <Col span="4" class="pic">
+        <Col span="12" class="pic">
         <!-- <span class="sign link" v-show="!isLog">登陆</span> -->
-        <Dropdown class="logImg" trigger="click" @on-click="selectTypeAction">
+        <Dropdown class="logImg" placement="right-start" trigger="click" @on-click="selectTypeAction">
             <a href="javascript:void(0)">
                 <img class="touxiang link" alt="" :src="pic" />
             </a>

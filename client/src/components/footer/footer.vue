@@ -1,8 +1,8 @@
 <style lang="stylus">
 .footer
-    width 100%
-    height 49px
-    background-color #778fe6
+    //width 100%
+    //height 30%
+    //background-color #778fe6
 </style>
 
 

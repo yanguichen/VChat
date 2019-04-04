@@ -3,34 +3,31 @@
     //padding 10px 10px 0 10px
     .word
         margin-bottom 10px
-
-    #friendTable
-        min-height 419px
 </style>
 
 
 <template>
     <div class="friend">
         <h3 class="word">我的好友</h3>
-        <Table id="friendTable" :height="screenHeight" :columns="columns1" :data="data1"></Table>
+        <Table id="friendTable" height="400" :columns="columns1" :data="data1"></Table>
     </div>
 </template>
 <script>
 export default {
     methods: {
-        getHeight: function() {
-            this.screenHeight = document.body.clientHeight - 140;
-        }
+        // getHeight: function() {
+        //     this.screenHeight = document.body.clientHeight - 140;
+        // }
     },
     mounted() {
-        this.interval = setInterval(this.getHeight, 500);
+        // this.interval = setInterval(this.getHeight, 500);
     },
     destroyed() {
-        clearInterval(this.interval);
+        // clearInterval(this.interval);
     },
     data() {
         return {
-            screenHeight: document.body.clientHeight - 140,
+            // screenHeight: document.body.clientHeight - 140,
             interval: "",
             columns1: [
                 {

@@ -1,18 +1,82 @@
 <style lang="stylus">
+@media screen and (max-width: 1546px)
+    .leftMenu
+        .content
+            .tag
+                .tip
+                    //display block !important
+                    .tipLink
+                        //display block !important
+                        .tipPic
+                            margin-right 0 !important
+
+                    .tipClick
+                        .tipPic
+                            margin-right 0 !important
+
+@media screen and (max-width: 1260px)
+    .leftMenu
+        .content
+            .tag
+                .tip
+                    display block !important
+
+                    .tipLink
+                        display block !important
+
+                        .tipPic
+                            display block !important
+
+                        .tipWord
+                            display block !important
+
+                    .tipClick
+                        display block !important
+
+                        .tipPic
+                            display block !important
+
+                        .tipWord
+                            display block !important
+
+@media screen and (max-width: 1260px)
+    .leftMenu
+        .content
+            .pic
+                img
+                    width 100% !important
+
+@media screen and (max-width: 637px)
+    .leftMenu
+        .content
+            .tag
+                .tip
+                    .tipLink
+                        .tipWord
+                            display none !important
+
+                    .tipClick
+                        .tipWord
+                            display none !important
+
 .leftMenu
     width 100%
-    min-height 460px
-    margin-right 10px
+    //min-height 460px
+    height 100%
+    //margin-right 10px
     float left
+    border-right 2px solid #eee
+    border-radius 15px
     background-color #fff
 
     .content
         width 100%
 
         .pic
-            height 160px
+            width 100%
+            height 90px
             text-align center
-            line-height 160px
+            line-height 90px
 
             img
                 vertical-align middle
@@ -31,12 +95,15 @@
                     align-items center
 
                     .tipPic
-                        margin 0 20px 0 0
+                        margin-right 20px
                         line-height 24px
 
                     .tipWord
                         height 100%
                         font 15px '微软雅黑'
+                        white-space nowrap
+                        text-overflow ellipsis
+                        overflow hidden
 
                 .tipClick
                     padding-top 18px
@@ -44,13 +111,16 @@
                     align-items center
 
                     .tipPic
-                        margin 0 20px 0 0
+                        margin-right 20px
                         line-height 24px
 
                     .tipWord
                         height 100%
                         font 15px '微软雅黑'
                         color #2e70ef
+                        white-space nowrap
+                        text-overflow ellipsis
+                        overflow hidden
 
         .tag:hover
             background-color #f7faff
@@ -60,7 +130,7 @@
         <div id="content" class="content">
             <div class="pic"><img :src="pic" alt=""></div>
             <div class="tag" v-for=" (item,index) in items ">
-                <div class="tip">
+                <div class="tip" :title="item.item">
                     <div class="link" :class="item.isHover? 'tipClick':'tipLink'" @click="tipClick(index)"><img class="tipPic" :src="item.isHover?item.pic2:item.pic1"
                             alt=""><span class="tipWord">{{ item.item }}</span></div>
                 </div>
@@ -81,28 +151,16 @@ export default {
                     pic2: require("@/assets/icons/leftMenu/2-1.png")
                 },
                 {
-                    item: "我的图片",
+                    item: "寻找房间",
                     isHover: false,
                     pic1: require("@/assets/icons/leftMenu/3.png"),
                     pic2: require("@/assets/icons/leftMenu/3-1.png")
                 },
                 {
-                    item: "我的日记",
+                    item: "创建房间",
                     isHover: false,
                     pic1: require("@/assets/icons/leftMenu/5.png"),
                     pic2: require("@/assets/icons/leftMenu/5-1.png")
-                },
-                {
-                    item: "我的分享",
-                    isHover: false,
-                    pic1: require("@/assets/icons/leftMenu/6.png"),
-                    pic2: require("@/assets/icons/leftMenu/6-1.png")
-                },
-                {
-                    item: "回收站",
-                    isHover: false,
-                    pic1: require("@/assets/icons/leftMenu/7.png"),
-                    pic2: require("@/assets/icons/leftMenu/7-1.png")
                 }
             ],
             height: document.body.clientHeight - 99,
@@ -113,10 +171,10 @@ export default {
         this.formatStr();
     },
     mounted() {
-        this.interval = setInterval(this.getHeight, 500);
+        // this.interval = setInterval(this.getHeight, 500);
     },
     destroyed() {
-        clearInterval(this.interval);
+        // clearInterval(this.interval);
     },
     methods: {
         tipClick: function(index) {
@@ -124,14 +182,14 @@ export default {
                 this.items[i].isHover = false;
             }
             this.items[index].isHover = true;
-            this.$root.bus.$emit("routeChange", index + 3);
+            this.$root.bus.$emit("routeChange", index);
         },
-        getHeight: function() {
-            this.height = document.body.clientHeight - 99 + "px";
-            var leftMenu = document.getElementById("content");
-            leftMenu.style.height = this.height;
-        },
-        //格式化左侧菜单字符固定长度为4，不足用空格补齐
+        // getHeight: function() {
+        //     this.height = document.body.clientHeight - 99 + "px";
+        //     var leftMenu = document.getElementById("content");
+        //     leftMenu.style.height = this.height;
+        // },
+        //格式化左侧菜单字符固定长度为5，不足用空格补齐
         formatStr: function() {
             for (var i = 0; i < this.items.length; i++) {
                 if (this.items[i].item.length !== 4) {

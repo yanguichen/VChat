@@ -4,23 +4,15 @@
 </style>
 <template>
     <div class="rightMenu">
-        <community v-if="changeRoute==1" />
-        <myCommunity v-if="changeRoute==2" />
-        <friend v-if="changeRoute==3" />
-        <photos v-if="changeRoute==4" />
-        <notes v-if="changeRoute==5" />
-        <share v-if="changeRoute==6" />
-        <recycled v-if="changeRoute==7" />
+        <friend v-if="changeRoute==0" />
+        <findRoom v-if="changeRoute==1" />
+        <createRoom v-if="changeRoute==2" />
     </div>
 </template>
 <script>
-import notes from "@/components/body/menu/rightMenu/notes";
-import community from "@/components/body/menu/rightMenu/community";
+import createRoom from "@/components/body/menu/rightMenu/createRoom";
+import findRoom from "@/components/body/menu/rightMenu/findRoom";
 import friend from "@/components/body/menu/rightMenu/friend";
-import myCommunity from "@/components/body/menu/rightMenu/myCommunity";
-import photos from "@/components/body/menu/rightMenu/photos";
-import recycled from "@/components/body/menu/rightMenu/recycled";
-import share from "@/components/body/menu/rightMenu/share";
 export default {
     data() {
         return {
@@ -28,13 +20,9 @@ export default {
         };
     },
     components: {
-        notes,
-        community,
         friend,
-        myCommunity,
-        photos,
-        recycled,
-        share
+        createRoom,
+        findRoom
     },
     mounted: function() {
         this.$root.bus.$on("routeChange", num => {
