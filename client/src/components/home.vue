@@ -10,18 +10,18 @@
     <div class="home">
         <homeHead />
         <homeBody />
-        <footerMenu />
+        <!-- <footerMenu /> -->
     </div>
 </template>
 <script>
 import homeHead from "@/components/head/homeHead.vue";
 import homeBody from "@/components/body/homeBody.vue";
-import footerMenu from "@/components/footer/footer.vue";
+// import footerMenu from "@/components/footer/footer.vue";
 export default {
     components: {
         homeHead,
-        homeBody,
-        footerMenu
+        homeBody
+        // footerMenu
     }
 };
 </script>

@@ -1,4 +1,16 @@
 <style lang="stylus">
+@media screen and (max-width: 1546px)
+    .homeBody
+        height 600px !important
+
+@media screen and (max-width: 1260px)
+    .homeBody
+        height 500px !important
+
+@media screen and (max-width: 637px)
+    .homeBody
+        height 450px !important
+
 .homeBody
     height 90%
     min-height 450px

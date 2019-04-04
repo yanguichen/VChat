@@ -43,6 +43,10 @@
     .leftMenu
         .content
             .pic
+                height 0 !important
+                padding-top 75% !important
+                padding-bottom 30% !important
+
                 img
                     width 100% !important
 
@@ -74,12 +78,10 @@
 
         .pic
             width 100%
-            height 90px
-            text-align center
-            line-height 90px
-
-            img
-                vertical-align middle
+            height 100px
+            display flex
+            align-items center
+            justify-content center
 
         .tag
             height 60px
