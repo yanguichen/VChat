@@ -4,9 +4,7 @@
         .content
             .tag
                 .tip
-                    //display block !important
                     .tipLink
-                        //display block !important
                         .tipPic
                             margin-right 0 !important
 
