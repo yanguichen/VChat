@@ -1,166 +1,85 @@
 <style lang="stylus">
-@media screen and (max-width: 1546px)
-    .leftMenu
-        .content
-            .tag
-                .tip
-                    .tipLink
-                        .tipPic
-                            margin-right 0 !important
-
-                    .tipClick
-                        .tipPic
-                            margin-right 0 !important
-
-@media screen and (max-width: 1260px)
-    .leftMenu
-        .content
-            .tag
-                .tip
-                    display block !important
-
-                    .tipLink
-                        display block !important
-
-                        .tipPic
-                            display block !important
-
-                        .tipWord
-                            display block !important
-
-                    .tipClick
-                        display block !important
-
-                        .tipPic
-                            display block !important
-
-                        .tipWord
-                            display block !important
-
-@media screen and (max-width: 1260px)
-    .leftMenu
-        .content
-            .pic
-                height 0 !important
-                padding-top 75% !important
-                padding-bottom 30% !important
-
-                img
-                    width 100% !important
-
-@media screen and (max-width: 637px)
-    .leftMenu
-        .content
-            .tag
-                .tip
-                    .tipLink
-                        .tipWord
-                            display none !important
-
-                    .tipClick
-                        .tipWord
-                            display none !important
-
 .leftMenu
     width 100%
-    //min-height 460px
     height 100%
-    //margin-right 10px
-    float left
-    border-right 2px solid #eee
-    border-radius 15px
-    background-color #fff
+    .interact 
+        padding 7px 0 12px 0
+        text-align center
+        b
+            color #1f2531
 
     .content
         width 100%
-
-        .pic
-            width 100%
-            height 100px
-            display flex
-            align-items center
-            justify-content center
-
         .tag
-            height 60px
-
             .tip
                 width 100%
+                margin-bottom 15px
+                padding 5px 0 5px 0 
                 display flex
                 justify-content center
 
                 .tipLink
-                    padding-top 18px
+                    padding 0 5px 0 5px
                     display flex
                     align-items center
+                    border-left 2px solid #ccc
 
                     .tipPic
-                        margin-right 20px
                         line-height 24px
 
-                    .tipWord
-                        height 100%
-                        font 15px '微软雅黑'
-                        white-space nowrap
-                        text-overflow ellipsis
-                        overflow hidden
 
                 .tipClick
-                    padding-top 18px
+                    padding 0 5px 0 5px
                     display flex
                     align-items center
+                    border-left 2px solid #6699CC
 
                     .tipPic
-                        margin-right 20px
                         line-height 24px
 
-                    .tipWord
-                        height 100%
-                        font 15px '微软雅黑'
-                        color #2e70ef
-                        white-space nowrap
-                        text-overflow ellipsis
-                        overflow hidden
 
-        .tag:hover
-            background-color #f7faff
+            .tipLink:hover
+                background-color #aaa
+                border-left 2px solid #aaa
 </style>
 <template>
     <div class="leftMenu">
+        <div  class="interact"><b>互动</b></div>
         <div id="content" class="content">
-            <div class="pic"><img :src="pic" alt=""></div>
-            <div class="tag" v-for=" (item,index) in items ">
+            <div class="tag" v-for=" (item,index) in items " :key="index">
                 <div class="tip" :title="item.item">
-                    <div class="link" :class="item.isHover? 'tipClick':'tipLink'" @click="tipClick(index)"><img class="tipPic" :src="item.isHover?item.pic2:item.pic1"
-                            alt=""><span class="tipWord">{{ item.item }}</span></div>
+                    <div class="link" :class="item.isHover? 'tipClick':'tipLink'" @click="tipClick(index)">
+                        <!-- <img class="tipPic" :src="item.isHover?item.pic2:item.pic1" alt=""> -->
+                        <Icon class="tipPic" :type="item.type" color="#1f2531" :size="item.size"/>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </template>
 <script>
 export default {
     data() {
         return {
-            pic: require("@/assets/icons/leftMenu/pic2.png"),
             items: [
+                // {
+                //     item: "我的好友",
+                //     isHover: false,
+                //     pic1: require("@/assets/icons/leftMenu/2.png"),
+                //     pic2: require("@/assets/icons/leftMenu/2-1.png")
+                // },
                 {
-                    item: "我的好友",
-                    isHover: false,
-                    pic1: require("@/assets/icons/leftMenu/2.png"),
-                    pic2: require("@/assets/icons/leftMenu/2-1.png")
+                    item: "聊天室",
+                    isHover: true,
+                    type:"md-chatboxes",
+                    size:24
                 },
                 {
-                    item: "寻找房间",
+                    item: "创建聊天室",
                     isHover: false,
-                    pic1: require("@/assets/icons/leftMenu/3.png"),
-                    pic2: require("@/assets/icons/leftMenu/3-1.png")
-                },
-                {
-                    item: "创建房间",
-                    isHover: false,
-                    pic1: require("@/assets/icons/leftMenu/5.png"),
-                    pic2: require("@/assets/icons/leftMenu/5-1.png")
+                    type:"md-add",
+                    size:24
                 }
             ],
             height: document.body.clientHeight - 99,
@@ -168,7 +87,7 @@ export default {
         };
     },
     created() {
-        this.formatStr();
+        // this.formatStr();
     },
     mounted() {
         // this.interval = setInterval(this.getHeight, 500);
@@ -180,8 +99,10 @@ export default {
         tipClick: function(index) {
             for (var i = 0; i < this.items.length; i++) {
                 this.items[i].isHover = false;
+                this.items[i].size = "24";
             }
             this.items[index].isHover = true;
+            // this.items[index].size = "28";
             this.$root.bus.$emit("routeChange", index);
         },
         // getHeight: function() {
@@ -190,18 +111,18 @@ export default {
         //     leftMenu.style.height = this.height;
         // },
         //格式化左侧菜单字符固定长度为5，不足用空格补齐
-        formatStr: function() {
-            for (var i = 0; i < this.items.length; i++) {
-                if (this.items[i].item.length !== 4) {
-                    var len = this.items[i].item.length;
-                    for (var j = 0; j < 4 - len; j++) {
-                        this.items[i].item =
-                            this.items[i].item + "\xa0\xa0\xa0";
-                    }
-                }
-                //
-            }
-        }
+        // formatStr: function() {
+        //     for (var i = 0; i < this.items.length; i++) {
+        //         if (this.items[i].item.length !== 4) {
+        //             var len = this.items[i].item.length;
+        //             for (var j = 0; j < 4 - len; j++) {
+        //                 this.items[i].item =
+        //                     this.items[i].item + "\xa0\xa0\xa0";
+        //             }
+        //         }
+        //         //
+        //     }
+        // }
     }
 };
 </script>

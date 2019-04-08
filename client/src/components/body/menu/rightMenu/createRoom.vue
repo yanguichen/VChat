@@ -1,13 +1,16 @@
 <style lang="stylus">
-.photos
-    margin 10px 10px 0 10px
-    //background-color #fff
+
 </style>
 
 
 <template>
     <div class="createRoom">
-
+        <div class="title"><b>创建聊天室</b></div>
+        <form id="form" action="">
+            <Input placeholder="聊天室名称" style="width: 250px" @on-click="search"/>
+            <Input placeholder="描述" style="width: 250px" @on-click="search"/>
+            <Button type="primary" @click="search" >创建</Button>
+        </form>     
     </div>
 </template>
 <script>
@@ -15,15 +18,9 @@ export default {
     components: {},
     data() {
         return {
-            tabs: 1,
-            tabTitle: ["默认"]
         };
     },
     methods: {
-        handleTabsAdd() {
-            this.tabTitle.push("默认" + this.tabs);
-            this.tabs++;
-        }
     }
 };
 </script>

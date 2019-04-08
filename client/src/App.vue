@@ -8,9 +8,7 @@
     display flex
     align-items center
     justify-content center
-    background-image url('~@/assets/icons/background.jpg')
-    background-size 100% 100%
-    background-repeat no-repeat
+    background-color #f7faff
 </style>
 
 

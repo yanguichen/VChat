@@ -5,23 +5,22 @@
     //background-color #cdcdcd
 </style>
 
-
 <template>
     <div class="home">
         <homeHead />
         <homeBody />
-        <!-- <footerMenu /> -->
+        <footerMenu />
     </div>
 </template>
 <script>
-import homeHead from "@/components/head/homeHead.vue";
-import homeBody from "@/components/body/homeBody.vue";
-// import footerMenu from "@/components/footer/footer.vue";
+import homeHead from '@/components/head/homeHead.vue'
+import homeBody from '@/components/body/homeBody.vue'
+import footerMenu from "@/components/footer/footer.vue";
 export default {
-    components: {
-        homeHead,
-        homeBody
-        // footerMenu
-    }
-};
+  components: {
+    homeHead,
+    homeBody,
+    footerMenu
+  }
+}
 </script>

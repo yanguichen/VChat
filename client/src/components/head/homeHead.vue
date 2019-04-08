@@ -3,48 +3,53 @@
     width 100%
     min-height 50px
     height 5%
+    background-color #6699CC
 
-    //background-color #778fe6
-    .log
-        display flex
-        align-items center
-        //justify-content center
-        //width 220px
-        height 50px
+    .logo
+        display inline-block 
+        width 200px 
+        height 100%
+        margin-left 5px
+        .log
+            display flex
+            align-items center
+            height 100%
 
-        span
-            font 16px '微软雅黑'
-            color black
+            span
+                font 16px '微软雅黑'
+                color #fff
 
-    .community
-        width 100px
-        font 14px '微软雅黑'
-        color #ffffff
-        text-align center
 
-        div
-            line-height 50px
-
-    .mycom
-        width 100px
-        font 14px '微软雅黑'
-        color #ffffff
-        text-align center
-
-        div
-            line-height 50px
-
-    .pic
-        //float right
-
-        //width 70px
-        .logImg
+    .logMsg
+        // display inline-block 
+        width 105px
+        float right
+        .log
             display flex
             height 50px
             align-items center
             justify-content flex-end
-            margin-right -2px
-
+            .logList 
+                display flex 
+                align-items center 
+                justify-content center
+                .username
+                    margin-right 2px
+                    color #fff
+                .userPic
+                    margin-right 5px
+    
+    .getMsg 
+        float right
+        
+        .word 
+            height 50px
+            display flex 
+            align-items center 
+            justify-content center
+            color #fff
+        // dispaly inline-block
+            
     .shelter
         position fixed
         top 0
@@ -68,10 +73,13 @@
 </style>
 
 <template>
-    <Row class="topmenu">
-        <Col span="12" class="log"><img src="@/assets/icons/head/log.png" />
-        <span style="cursor:default">网上交友平台</span>
-        </Col>
+    <div class="topmenu">
+        <div class="logo">
+            <div class="log">
+                <img src="@/assets/icons/head/log.png" />
+                <span style="cursor:default">网上交友平台</span>
+            </div>
+        </div>
         <!-- <Col span="4" class="community link">
         <div @click="change(1)">社区</div>
         </Col>
@@ -79,18 +87,23 @@
         <div @click="change(2)">我的社区</div>
         </Col> -->
 
-        <Col span="12" class="pic">
+        <div class="logMsg">
         <!-- <span class="sign link" v-show="!isLog">登陆</span> -->
-        <Dropdown class="logImg" placement="right-start" trigger="click" @on-click="selectTypeAction">
-            <a href="javascript:void(0)">
-                <img class="touxiang link" alt="" :src="pic" />
+        <Dropdown class="log link" placement="right-start" trigger="click" @on-click="selectTypeAction">
+            <a href="javascript:void(0)" class="logList">
+                <img class="userPic link" alt="" :src="pic" />
+                <span class="username">{{ username }}</span>
+                <Icon type="ios-arrow-down" size="18" color="#fff"/>
             </a>
             <DropdownMenu slot="list">
                 <DropdownItem name="msg">个人信息</DropdownItem>
                 <DropdownItem name="logOut">退出登录</DropdownItem>
             </DropdownMenu>
         </Dropdown>
-        </Col>
+        </div>
+        <div class="getMsg">
+            <span class="word"><Icon type="ios-mail-outline" size="20" /></span>
+        </div>
         <!-- 遮罩层 -->
         <div class="shelter" v-show="isShowMsg"></div>
         <div class="msgFrame" v-show="isShowMsg">
@@ -101,7 +114,7 @@
             <changeMsg :onClose="closeMsg" />
         </div>
 
-    </Row>
+    </div>
 </template>
 
 <script>
@@ -110,6 +123,7 @@ import { delCookie } from "@/assets/js/cookie.js";
 export default {
     data() {
         return {
+            username:"Ryan",
             isShowMsg: false,
             pic: require("@/assets/icons/head/pic1.png")
         };
