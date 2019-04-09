@@ -1,7 +1,7 @@
 <style lang="stylus">
 .footer
     width 100%
-    height 30px
+    height 5%
     background-color #6699CC
     display flex 
     align-items center 

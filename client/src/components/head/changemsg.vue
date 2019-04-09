@@ -1,5 +1,5 @@
 <style lang="stylus">
-.msg
+.changemsg
     width 400px
     height auto
     padding 25px
@@ -49,7 +49,7 @@
 </style>
 
 <template>
-    <div class="msg">
+    <div class="changemsg">
         <Tabs type="card" class="card">
             <TabPane label="个人信息" class="myMsg">
                 <div class="name"><span><b>姓&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp名:</b></span><span>{{ user.name }}</span></div>

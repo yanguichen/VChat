@@ -1,5 +1,10 @@
 <style lang="stylus">
-
+.rightMenu 
+    height 100%
+    position relative
+    display flex
+    align-items center 
+    justify-content center
 </style>
 <template>
     <div class="rightMenu">
@@ -13,7 +18,7 @@ import findRoom from "@/components/body/menu/rightMenu/findRoom";
 export default {
     data() {
         return {
-            changeRoute: 0
+            changeRoute: 1
         };
     },
     components: {

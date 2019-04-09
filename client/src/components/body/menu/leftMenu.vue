@@ -75,12 +75,12 @@ export default {
                     type:"md-chatboxes",
                     size:24
                 },
-                {
-                    item: "创建聊天室",
-                    isHover: false,
-                    type:"md-add",
-                    size:24
-                }
+                // {
+                //     item: "创建聊天室",
+                //     isHover: false,
+                //     type:"md-add",
+                //     size:24
+                // }
             ],
             height: document.body.clientHeight - 99,
             interval: ""

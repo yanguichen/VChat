@@ -2,7 +2,7 @@
 .home
     width 70%
     height 70%
-    //background-color #cdcdcd
+    box-shadow 2px -2px 5px #888888
 </style>
 
 <template>

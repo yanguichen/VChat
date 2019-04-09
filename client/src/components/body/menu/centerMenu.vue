@@ -11,11 +11,11 @@
             -khtml-user-select:none;/*早期浏览器*/
             user-select:none;
         
-    .panel 
+    .panel1 
         .content
             padding-left 18px
             background-color #e9e7ef
-            .lists 
+            .lists1 
                 .list 
                     color #000
                     -moz-user-select:none;/*火狐*/
@@ -27,10 +27,28 @@
 </style>
 <template>
     <div class="centerMenu">
-        <div class="friend link" @click="showLists"><Icon :type="iconType" size=13 /><b class="word">我的好友</b></div>
-        <div class="panel" v-show="isShowLists">
+        <div class="friend link" @click="showList1">
+            <Icon :type="iconType1" size=14 style="margin-top:-3px" />
+            <b class="word">我的好友</b>
+            <!-- <Icon type="md-heart-outline" /> -->
+        </div>
+        <div class="panel1" v-show="isShowList1">
             <div class="content">
-                <div class="lists" v-for=" list in lists " :key="list">
+                <div class="lists1" v-for=" list in lists1 " :key="list">
+                    <div class="list">
+                        {{list}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="friend link" @click="showList2">
+            <Icon :type="iconType2" size=14 style="margin-top:-3px" />
+            <b class="word">常用聊天室</b>
+            <!-- <Icon type="md-heart-outline" /> -->
+        </div>
+        <div class="panel1" v-show="isShowList2">
+            <div class="content">
+                <div class="lists1" v-for=" list in lists2 " :key="list">
                     <div class="list">
                         {{list}}
                     </div>
@@ -43,14 +61,22 @@
 export default {
     data() {
         return {
-            iconType:"ios-arrow-forward",
-            isShowLists:false,
-            lists:["张三","李四"]
+            iconType1:"ios-arrow-forward",
+            isShowList1:false,
+            lists1:["张三","李四"],
+            iconType2:"ios-arrow-forward",
+            isShowList2:false,
+            lists2:["聊天室1","聊天室2"],
         }
     },
     methods:{
-        showLists(){
-            this.isShowLists = !this.isShowLists;
+        showList1(){
+            this.isShowList1 = !this.isShowList1;
+            this.iconType1 = this.iconType1 == "ios-arrow-forward"?"ios-arrow-down":"ios-arrow-forward";
+        },
+        showList2(){
+            this.isShowList2 = !this.isShowList2;
+            this.iconType2 = this.iconType2 == "ios-arrow-forward"?"ios-arrow-down":"ios-arrow-forward";
         }
     }
 }

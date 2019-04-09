@@ -1,88 +1,124 @@
 <style lang="stylus">
 .findRoom 
+    width 100%
+    height 100%
     .title 
         padding-bottom 7px
         b 
             font-size 14px
+    #form 
+        display inline-block
+        .search 
+            margin-left 30px
+    .addRoom 
+        position absolute 
+        bottom 8px
+        right 3px
+        z-index 1
     .lists 
         margin 8px 0 4px 0
+// .modal
+    .chatName
+        .roomName
+            // display block
+            margin-right 20px
+    .chatDisc
+        margin-top 10px
+        display flex 
+        align-items flex-start
+        .roomDisc
+            margin-right 20px
 </style>
 
 <template>
     <div class="findRoom">
         <div class="title"><b>聊天室</b></div>
         <form id="form" action="">
-            <Input icon="ios-search" placeholder="搜索聊天室" style="width: 250px" @on-click="search"/>
-            <Button type="primary" @click="search" >搜索</Button>
+            <Input class="input" icon="ios-search" placeholder="搜索聊天室" style="width: 250px" @on-click="search"/>
+            <Button class="search" type="primary" @click="search" >搜索</Button>
         </form>
+        <span class="addRoom link" @click="showAddRoom"><Icon type="ios-add-circle" size="34" title="创建聊天室"/></span>
         <div class="lists"><b>聊天室列表</b></div>
         <Table size="small" stripe border  :columns="columns" :data="data" ></Table>
+        <Modal class="modal"
+        v-model="isShowAddRoom"
+        title="创建聊天室"
+        @on-ok="ok">
+        <div class="chatName"><span class="roomName">聊天室名称</span><Input id="roomName" v-model="roomName" placeholder="聊天室名称" style="width: 250px"/></div>
+        <div class="chatDisc"><span class="roomDisc">聊天室描述</span><Input id="roomDisc" v-model="roomDisc" type="textarea" :rows="4" placeholder="聊天室描述" style="width: 250px"/></div>
+    </Modal>
     </div>
 </template>
 
 <script>
+import Axios from "@/axios/axios.js" 
 export default {
     data() {
         return {
-        columns: [
-                {
-                    title: '序号',
-                    key: 'id',
-                    align:'center',
-                    width:"60px"
+            Axios:Axios.getAxios,
+            roomName:"",
+            roomDisc:"",
+            columns: [
+                    {
+                        title: '序号',
+                        key: 'id',
+                        align:'center',
+                        width:"60px"
 
-                },
-                {
-                    title: '聊天室名称',
-                    key: 'name',
-                    align:'center',
-                    width:"120px"
+                    },
+                    {
+                        title: '聊天室名称',
+                        key: 'name',
+                        align:'center',
+                        width:"120px"
 
-                },
-                {
-                    title: '描述',
-                    key: 'disc',
-                    align:'center'
-                },
-                {
-                    title: '人数',
-                    key: 'number',
-                    align:'center',
-                    width:"80px"
-                },
-                {
-                    title: '加入',
-                    key: 'enter',
-                    align:'center',
-                    width:"120px",
-                    render: (h, params) => {
-                        return h('div', [
-                            h('Button', {
-                                props: {
-                                    type: 'primary',
-                                    size: 'small'
-                                },
-                                style: {
-                                },
-                                on: {
-                                    click: () => {
-                                        // this.index = params.index;
-                                        this.show(params);
+                    },
+                    {
+                        title: '描述',
+                        key: 'disc',
+                        align:'center'
+                    },
+                    {
+                        title: '人数',
+                        key: 'number',
+                        align:'center',
+                        width:"80px"
+                    },
+                    {
+                        title: '加入',
+                        key: 'enter',
+                        align:'center',
+                        width:"120px",
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                    },
+                                    on: {
+                                        click: () => {
+                                            // this.index = params.index;
+                                            this.show(params);
+                                        }
                                     }
-                                }
-                            }, '加入')
-                            ])
+                                }, '加入')
+                                ])
+                            }
                         }
+                ],
+                data: [
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"",
+                        number:1,
+                        userId:""
                     }
-            ],
-            data: [
-                {
-                    id:"1",
-                    name:"ryan",
-                    disc:"",
-                    number:1
-                }
-            ],
+                ],
+                isShowAddRoom:false
         }
     },
     methods: {
@@ -94,10 +130,36 @@ export default {
                 content: `聊天室名称：${this.data[params.index].name}<br>人数：${this.data[params.index].number}<br>描述:${this.data[params.index].disc}`,
                 cancelText:"取消",
                 onOk:function(){
-                    //调用接口，加入制定id的聊天室
-                    return console.log(params.row.id)
+                    //调用接口，加入指定id的聊天室
+                    var ts = this;
+                    var roomname = params.row.name;
+                    var roomdisc
+                    var params = 
+                    console.log(params.row.id)
                 }
             })
+        },
+        showAddRoom(){
+            this.isShowAddRoom = true;
+        },
+        closeAddRoom(){
+            this.isShowAddRoom = false;
+        },
+        //创建聊天室，向后台提供聊天室名称及描述，跳转到聊天室界面
+        ok(){
+            var ts= this;
+            var roomname = ts.roomName;
+            var roomdisc = ts.roomDisc;
+            console.log("聊天室名称："+roomname + "聊天室描述：" + roomdisc); 
+            //调用后台接口
+            // var params = {
+            //     roomName:roomname,
+            //     roomDisc:rootdisc
+            // }
+            // ts.Axios.post("",{params:params}).then((response)=>{
+                    // ts.userId = response.userId;
+            // });
+            this.$root.bus.$emit("routeChange", 1);
         },
     },
 }

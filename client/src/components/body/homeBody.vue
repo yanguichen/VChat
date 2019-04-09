@@ -18,7 +18,7 @@
         float top
         height 100%
         width 100%
-        padding 7px 10px 0 165px
+        padding 7px 10px 7px 165px
         background-color #f3f9f1
 </style>
 
