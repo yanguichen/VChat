@@ -17,6 +17,10 @@ class ChatroomController extends Controller {
     /**
      * 搜索聊天室
      */
+    const ctx = this.ctx;
+    const chatroomId = ctx.params.chatroomId;
+    const chatroom = await ctx.service.chatroom.searchRoom(chatroomId);
+    ctx.body = chatroom;
   }
   async setOftenUsedRoom() {
     /**
