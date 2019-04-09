@@ -6,7 +6,7 @@ class ChatroomService extends Service {
    */
   async createChatroom(chatroomName, description) {
     const shortid = require("shortid");
-    const chatroomId = shortid.generate();
+    const chatroomId = "cid_" + shortid.generate();
     const currentUser = [];
     const result = await this.app.mysql.insert("chatroom", {
       chatroomName,
