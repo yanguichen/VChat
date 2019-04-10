@@ -34,12 +34,12 @@
     <div class="findRoom">
         <div class="title"><b>聊天室</b></div>
         <form id="form" action="">
-            <Input class="input" icon="ios-search" placeholder="搜索聊天室" style="width: 250px" @on-click="search"/>
-            <Button class="search" type="primary" @click="search" >搜索</Button>
+            <Input class="input" v-model="searchList" icon="ios-search" placeholder="搜索聊天室" style="width: 250px" @on-click="showLists"/>
+            <Button class="search" type="primary" @click="showLists" >搜索</Button>
         </form>
         <span class="addRoom link" @click="showAddRoom"><Icon type="ios-add-circle" size="34" title="创建聊天室"/></span>
         <div class="lists"><b>聊天室列表</b></div>
-        <Table size="small" stripe border  :columns="columns" :data="data" ></Table>
+        <Table size="small" stripe border  :columns="columns" :data="isSearch ? filterLists : lists" ></Table>
         <Modal class="modal"
         v-model="isShowAddRoom"
         title="创建聊天室"
@@ -63,8 +63,10 @@ export default {
                         title: '序号',
                         key: 'id',
                         align:'center',
-                        width:"60px"
-
+                        width:"60px",
+                        filter: {
+                        type: 'Input' //输入框过滤
+                        }
                     },
                     {
                         title: '聊天室名称',
@@ -109,25 +111,64 @@ export default {
                             }
                         }
                 ],
-                data: [
+                lists: [
                     {
                         id:"1",
                         name:"ryan",
-                        disc:"",
+                        disc:"燕桂",
                         number:1,
                         userId:""
-                    }
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"陈燕桂",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"燕桂陈",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"hahahahahaha",
+                        number:1,
+                        userId:""
+                    },
                 ],
-                isShowAddRoom:false
+                isShowAddRoom:false,
+                isSearch:false,
+                searchList:"",
+                filterLists:[],
         }
     },
     methods: {
-        search(){
+        showLists(){
+            this.isSearch = true;
+            console.log(this.searchList);
+            if(this.searchList !== ""){
+                var patt = new RegExp(this.searchList, 'i');
+                var list;
+                // console.log(patt);
+                for(list in this.lists){
+                    // console.log(this.lists[list].disc);
+                    if(this.lists[list].disc.search(patt)>-1){
+                        this.filterLists.push(this.lists[list]);
+                    }
+                }
+            }else{
+
+            }
         },
         show (params) {
             this.$Modal.confirm({
                 title: '确定加入',
-                content: `聊天室名称：${this.data[params.index].name}<br>人数：${this.data[params.index].number}<br>描述:${this.data[params.index].disc}`,
+                content: `聊天室名称：${this.lists[params.index].name}<br>人数：${this.lists[params.index].number}<br>描述:${this.lists[params.index].disc}`,
                 cancelText:"取消",
                 onOk:function(){
                     //调用接口，加入指定id的聊天室
