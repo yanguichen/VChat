@@ -34,12 +34,12 @@
     <div class="findRoom">
         <div class="title"><b>聊天室</b></div>
         <form id="form" action="">
-            <Input class="input" icon="ios-search" placeholder="搜索聊天室" style="width: 250px" @on-click="search"/>
-            <Button class="search" type="primary" @click="search" >搜索</Button>
+            <Input class="input" v-model="searchList" icon="ios-search" placeholder="搜索聊天室" style="width: 250px" @on-click="showLists"/>
+            <Button class="search" type="primary" @click="showLists" >搜索</Button>
         </form>
         <span class="addRoom link" @click="showAddRoom"><Icon type="ios-add-circle" size="34" title="创建聊天室"/></span>
         <div class="lists"><b>聊天室列表</b></div>
-        <Table size="small" stripe border  :columns="columns" :data="data" ></Table>
+        <Table stripe border  height="250" size="small" no-data-text="通过搜索获取聊天室列表" :columns="columns" :data="filterLists" ></Table>
         <Modal class="modal"
         v-model="isShowAddRoom"
         title="创建聊天室"
@@ -63,8 +63,10 @@ export default {
                         title: '序号',
                         key: 'id',
                         align:'center',
-                        width:"60px"
-
+                        width:"60px",
+                        filter: {
+                        type: 'Input' //输入框过滤
+                        }
                     },
                     {
                         title: '聊天室名称',
@@ -109,33 +111,135 @@ export default {
                             }
                         }
                 ],
-                data: [
+                lists: [
                     {
                         id:"1",
                         name:"ryan",
-                        disc:"",
+                        disc:"燕桂",
                         number:1,
                         userId:""
-                    }
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"陈燕桂",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"燕桂陈",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"hahahahahaha",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"燕桂",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"陈燕桂",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"燕桂陈",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"hahahahahaha",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"燕桂",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"陈燕桂",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"燕桂陈",
+                        number:1,
+                        userId:""
+                    },
+                    {
+                        id:"1",
+                        name:"ryan",
+                        disc:"hahahahahaha",
+                        number:1,
+                        userId:""
+                    },
                 ],
-                isShowAddRoom:false
+                isShowAddRoom:false,
+                isSearch:false,
+                searchList:"",
+                filterLists:[],
         }
     },
+    mounted(){
+    },
     methods: {
-        search(){
+        //搜索聊天室
+        showLists(){
+            var ts = this;
+            //调用后台搜索聊天室接口，提供一个字符串，返回json格式的聊天室信息
+            ts.Axios.post("",ts.searchList).then((response)=>{
+                    console.log(response);
+            });
+            // for(list in this.lists){
+            //     // console.log(this.lists[list].disc);
+            //     if(this.lists[list].disc.search(patt)>-1){
+            //         this.filterLists.push(this.lists[list]);
+            //     }
+            // }
         },
+        //加入聊天室
         show (params) {
             this.$Modal.confirm({
                 title: '确定加入',
-                content: `聊天室名称：${this.data[params.index].name}<br>人数：${this.data[params.index].number}<br>描述:${this.data[params.index].disc}`,
+                content: `聊天室名称：${this.lists[params.index].name}<br>人数：${this.lists[params.index].number}<br>描述:${this.lists[params.index].disc}`,
                 cancelText:"取消",
                 onOk:function(){
-                    //调用接口，加入指定id的聊天室
                     var ts = this;
+                    console.log(params);
                     var roomname = params.row.name;
-                    var roomdisc
-                    var params = 
-                    console.log(params.row.id)
+                    //调用接口，加入指定id的聊天室
+                    // ts.Axios.post("",{
+                    //     params:{
+                    //         chatroomid : params.row.id
+                    //     }
+                    // }).then((response)=>{
+                    //         console.log(response);
+                    // });
+                    this.$root.bus.$emit("routeChange", 1);
+                    // console.log(params.row.id)
                 }
             })
         },
@@ -153,11 +257,11 @@ export default {
             console.log("聊天室名称："+roomname + "聊天室描述：" + roomdisc); 
             //调用后台接口
             // var params = {
-            //     roomName:roomname,
-            //     roomDisc:rootdisc
+            //     chatroomname:roomname,
+            //     description:rootdisc
             // }
             // ts.Axios.post("",{params:params}).then((response)=>{
-                    // ts.userId = response.userId;
+                    // console.log(response);
             // });
             this.$root.bus.$emit("routeChange", 1);
         },

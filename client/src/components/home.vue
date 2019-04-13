@@ -1,7 +1,7 @@
 <style lang="stylus">
 .home
-    width 70%
-    height 70%
+    width 900px
+    height 460px
     box-shadow 2px -2px 5px #888888
 </style>
 
