@@ -28,7 +28,7 @@ module.exports = app => {
       type: STRING(30),
       defaultValue: ""
     },
-    interest: {
+    hobby: {
       type: STRING,
       defaultValue: ""
     }

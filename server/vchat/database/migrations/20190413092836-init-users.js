@@ -12,24 +12,51 @@ module.exports = {
     const { INTEGER, VARCHAR, STRING } = Sequelize;
 
     await queryInterface.createTable('user', {
-      id: {type: INTEGER, primaryKey: true, autoIncrement: true},
+      id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       username: STRING(30),
       userid: STRING(30),
-      age: INTEGER,
-      attentionUser: VARCHAR,
-      attentionChatroom: VARCHAR,
-      gender: STRING(5),
-      phone: STRING(11),
-      email: STRING(30),
-      interest: VARCHAR
+      age: {
+        type: STRING(30),
+        defaultValue: ""
+      },
+      attentionUser: {
+        type: STRING(30),
+        defaultValue: ""
+      },
+      attentionChatroom: {
+        type: STRING,
+        defaultValue: ""
+      },
+      gender: {
+        type: STRING(30),
+        defaultValue: ""
+      },
+      phone: {
+        type: STRING(30),
+        defaultValue: ""
+      },
+      email: {
+        type: STRING(30),
+        defaultValue: ""
+      },
+      hobby: {
+        type: STRING,
+        defaultValue: ""
+      }
     });
 
     await queryInterface.createTable('chatroom', {
-      id: {type: INTEGER, primaryKey: true, autoIncrement: true},
+      id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       chatroomid: STRING(30),
       chatroomname: STRING(30),
-      description: VARCHAR,
-      currentUser: VARCHAR,
+      description: {
+        type: STRING,
+        defaultValue: ""
+      },
+      currentUser: {
+        type: STRING,
+        defaultValue: ""
+      }
     });
   },
 

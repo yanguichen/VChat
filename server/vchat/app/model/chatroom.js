@@ -4,7 +4,10 @@ module.exports = app => {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     chatroomid: STRING(30),
     chatroomname: STRING(30),
-    description: STRING,
+    description: {
+      type: STRING,
+      defaultValue: ""
+    },
     currentUser: {
       type: STRING,
       defaultValue: ""
