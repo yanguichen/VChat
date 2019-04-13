@@ -18,7 +18,7 @@ import findRoom from "@/components/body/menu/rightMenu/findRoom";
 export default {
     data() {
         return {
-            changeRoute: 1
+            changeRoute: 0,
         };
     },
     components: {
