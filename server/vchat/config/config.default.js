@@ -18,6 +18,13 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [];
 
+  config.sequelize = {
+    dialect: "mysql",
+    host: "localhost",
+    port: 3306,
+    dataset: "egg-sequelize-doc-default"
+  };
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',

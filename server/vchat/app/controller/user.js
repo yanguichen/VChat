@@ -18,6 +18,16 @@ class UserController extends Controller {
      * 是的话，修改数据库
      */
   }
+  async setOftenUsedRoom() {
+    /**
+     * 设置常用聊天室
+     */
+  }
+  async setFrequentContact() {
+    /**
+     * 设置常联系好友
+     */
+  }
 }
 
 module.exports = UserController;

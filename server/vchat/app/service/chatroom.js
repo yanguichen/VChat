@@ -43,8 +43,8 @@ class ChatroomService extends Service {
  * 表名区分大小写
  * 关键字不区分大小写
  * id
- * chatroomId
- * chatroomName
+ * chatroomid
+ * chatroomname
  * description
  * currentUser: {
  *  users: [{

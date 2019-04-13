@@ -1,4 +1,5 @@
 const Service = require("egg").Service;
+const shortidGenerator = require("shortid").generate;
 
 class UserService extends Service {
   /**
@@ -7,8 +8,20 @@ class UserService extends Service {
   async selectUserInfo() {}
   /**
    * 新增用户
+   * 注册的时候
    */
-  async addUser() {}
+  async addUser(username, password) {
+    const userid = "uid_" + shortidGenerator();
+    const result = await this.app.mysql.insert("users", {
+      username,
+      userid,
+      password
+    });
+    return {
+      userid,
+      result
+    };
+  }
   /**
    * 修改用户信息
    */
