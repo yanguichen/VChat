@@ -11,6 +11,9 @@ class PassportController extends Controller {
      * 如果 账号 + 密码 正确，则返回 200
      * 否则 返回 401
      */
+    const ctx = this.ctx;
+    const { userid, password } = ctx.request.body;
+    
   }
   async logout() {
     /**

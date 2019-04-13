@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
-    "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^4.3.1",
+    "mysql2": "^1.6.5",
     "shortid": "^2.2.14"
   },
   "devDependencies": {
@@ -20,12 +21,14 @@
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
+    "sequelize-cli": "^5.4.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
     "node": ">=8.9.0"
   },
   "scripts": {
+    "db:migrate": "npx sequelize db:migrate",
     "start": "egg-scripts start --daemon --title=egg-server-vchat",
     "stop": "egg-scripts stop --title=egg-server-vchat",
     "dev": "egg-bin dev",
