@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -11,7 +11,7 @@ module.exports = {
     */
     const { INTEGER, VARCHAR, STRING } = Sequelize;
 
-    await queryInterface.createTable('user', {
+    await queryInterface.createTable("user", {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       username: STRING(30),
       userid: STRING(30),
@@ -45,7 +45,7 @@ module.exports = {
       }
     });
 
-    await queryInterface.createTable('chatroom', {
+    await queryInterface.createTable("chatroom", {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       chatroomid: STRING(30),
       chatroomname: STRING(30),
@@ -60,7 +60,7 @@ module.exports = {
     });
   },
 
-  down: (queryInterface) => {
+  down: async queryInterface => {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
@@ -68,7 +68,7 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    await queryInterface.dropTable('user');
-    await queryInterface.dropTable('chatroom');
+    await queryInterface.dropTable("user");
+    await queryInterface.dropTable("chatroom");
   }
 };

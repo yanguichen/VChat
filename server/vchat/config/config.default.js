@@ -20,9 +20,19 @@ module.exports = appInfo => {
 
   config.sequelize = {
     dialect: "mysql",
+    password: "password",
     host: "localhost",
     port: 3306,
     dataset: "egg-sequelize-doc-default"
+  };
+
+  config.io = {
+    namespace: {
+      "/": {
+        connectionMiddleware: ["auth"],
+        packetMiddleware: []
+      }
+    }
   };
 
   // add your user config here
